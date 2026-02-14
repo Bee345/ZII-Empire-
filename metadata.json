@@ -1,0 +1,7 @@
+{
+  "name": "ZiiEmpire Design Hub",
+  "description": "A comprehensive fashion design and management platform combining AI design, e-commerce, and enterprise resource planning for African fashion designers.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
