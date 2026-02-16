@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import { generateFashionDesign } from '../services/geminiService';
 import { STYLE_CATEGORIES } from '../constants';
 
-const DesignStudio: React.FC = () => {
+// Added interface to handle props passed from App.tsx to resolve type error
+interface DesignStudioProps {
+  onSaveDesign: (design: any) => void;
+}
+
+const DesignStudio: React.FC<DesignStudioProps> = ({ onSaveDesign }) => {
   const [prompt, setPrompt] = useState('');
   const [category, setCategory] = useState(STYLE_CATEGORIES[0]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -16,6 +21,8 @@ const DesignStudio: React.FC = () => {
       const design = await generateFashionDesign(prompt, category);
       if (design) {
         setResults(prev => [design, ...prev]);
+        // Call the onSaveDesign callback provided by the parent component
+        onSaveDesign(design);
       }
     } catch (error) {
       console.error(error);
